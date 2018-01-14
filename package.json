@@ -1,0 +1,24 @@
+{
+  "name": "node-bugjs",
+  "version": "2.0.0",
+  "description": "debug for node.js .",
+  "main": "libs/debug.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mengdu/node-bugjs.git"
+  },
+  "keywords": [
+    "log",
+    "node-bugjs",
+    "debug"
+  ],
+  "author": "lanyue",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mengdu/node-bugjs/issues"
+  },
+  "homepage": "https://github.com/mengdu/node-bugjs#readme"
+}
