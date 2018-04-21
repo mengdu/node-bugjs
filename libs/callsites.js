@@ -1,6 +1,6 @@
 /**
 * Get callsites from the V8 stack trace API
-* @reutrn {stack}
+* @reutrn {Callsites} Callsites.stack
 * stack.getTypeName()
 * stack.getFunctionName()
 * stack.getMethodName()
@@ -9,13 +9,13 @@
 * stack.getColumnNumber()
 * stack.getEvalOrigin()
 **/
-const callsites = function () {
+const Callsites = function () {
   var orig = Error.prepareStackTrace
-  Error.prepareStackTrace = function (_, stack) {return stack}
-  var err = new Error()
-  Error.captureStackTrace(err, arguments.callee)
-  Error.prepareStackTrace = orig
-  return err.stack
+  Error.prepareStackTrace = function (error, stack) {
+    Error.prepareStackTrace = orig
+    return stack
+  }
+  Error.captureStackTrace(this, arguments.callee)
 }
 
-module.exports = callsites
+module.exports = Callsites

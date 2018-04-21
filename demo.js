@@ -3,17 +3,18 @@ const util = require('util')
 const fs = require('fs')
 
 
-var log = Bugjs()
+var log = Bugjs('demo')
 var log1 = Bugjs('http')
 
-// log.config({
-//   bright: false,
-//   absolute: false,
-//   date: true,
-//   store: true,
-//   // console: false,
-//   // debug: false
-// })
+log.config({
+  bright: false,
+  absolute: true,
+  date: true,
+  store: true,
+  // callIndex: 2
+  // console: false,
+  // debug: false
+})
 
 log1.config({
   categorieColor: 'bgGreen'
@@ -29,6 +30,7 @@ log.storeHandler = function (log) {
   logs.push(' ')
   fs.appendFileSync(this.categorie + '.log', logs.concat(log.logs).join('') + '\n')
 }
+
 
 log.log('hello')
 log.info('这是info提示信息')

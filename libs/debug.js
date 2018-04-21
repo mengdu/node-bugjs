@@ -1,6 +1,6 @@
 const util = require('util')
 const path = require('path')
-const callsites = require('./callsites')
+const Callsites = require('./callsites')
 const styles = require('./styles')
 
 // 标准输出
@@ -15,8 +15,7 @@ function stdout () {
 * @return {string} 返回路径
 **/
 function getSitePath (site, absolute) {
-  // console.log(site.getFileName())
-  // console.log(process.cwd())
+
   if (absolute) {
     return site.getFileName()
   }
@@ -54,7 +53,7 @@ function makeLog (debug, log, params) {
   
   // 获取调用堆栈信息
   if (debug.debug) {
-    var site = callsites()[2]
+    var site = new Callsites().stack[debug.callIndex || 2]
     var filePath = getSitePath(site, debug.absolute)
     var lineNumber = site.getLineNumber()
     var siteStr = '[' + filePath + ':' + lineNumber + ']'
@@ -122,7 +121,7 @@ function Debug (categorie) {
   }
 }
 
-Debug.callsites = callsites
+Debug.callsites = Callsites
 
 Debug.prototype.config = function (options) {
   this.console = val(options.console, true)
@@ -135,6 +134,7 @@ Debug.prototype.config = function (options) {
   this.date = val(options.date, false)
   this.dateColor = options.dateColor || 'cyan'
   this.filenameColor = options.filenameColor || 'gray'
+  this.callIndex = options.callIndex || 2
 }
 
 Debug.prototype.log = function () {

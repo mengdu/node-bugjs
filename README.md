@@ -17,9 +17,9 @@ npm install -S node-bugjs
 ```
 
 ```js
-const bugjs = require('node-bugjs')
+const bugjs = require('node-bugjs')('http')
 
-bug.log('wellcome')
+bugjs.log('wellcome')
 ```
 
 
@@ -42,7 +42,7 @@ const bugjs = Bugjs(options)
 + **Bugjs.prototype.error(any, any, ...)**
 + **Bugjs.prototype.warn(any, any, ...)**
 + **Bugjs.prototype.storeHandler = (logs) => {}** 定义log回调，可以用来实现记录日志
-+ **Bugjs.callsites()** 获取调用栈，返回 CallSite 数组
++ **Bugjs.Callsites** 获取调用栈对象，可以new CallSite()创建
 
 
 **options：**
@@ -57,6 +57,7 @@ const bugjs = Bugjs(options)
 + **options.date** 是否显示时间，默认 false
 + **options.dateColor** 显示时间样式，默认 'blue'，请看支持的 styles
 + **options.filenameColor** 文件名样式，默认 'gray'，请看支持的 styles
++ **options.callIndex** 指定调用栈序号，共10，默认2
 
 
 可以运行 `demo.js` 查看效果
@@ -134,3 +135,4 @@ bgWhiteBright
 ## other
 
 [colors](https://github.com/Marak/colors.js)
+[V8 stack trace API](#)
